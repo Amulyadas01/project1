@@ -1,0 +1,6 @@
+project1-p ansible_host=172.31.83.73 ansible_user=ubuntu
+
+[prod]
+project1-p
+
+

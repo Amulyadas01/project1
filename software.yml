@@ -1,0 +1,33 @@
+---
+- hosts: all
+  user: ubuntu
+  become: yes
+  connection: ssh
+  name: install softwares
+  vars:
+    java: openjdk-11-jdk
+    docker: docker.io
+    GIT: git
+  tasks:
+    - name: update machine
+      command: apt-get update
+    - name: post msg
+      debug:
+        msg: we are installing the java for jenkins.
+    - name: install java
+      action: apt name='{{java}}' state=present
+    - name: post msg
+      debug:
+        msg: we are installing docker
+    - name: installing docker
+      action: apt name='{{docker}}' state=present
+    - name: updating the docker service
+      action: service name=docker  state=restarted
+    - name: post msg
+      debug:
+        msg: we are installing GIT
+    - name: installing GIT
+      action: apt name='{{GIT}}' state=present
+
+
+
